@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq
+  namespace: roboshop
+  labels: # these labels are deployment labels
+    app: rabbitmq
+    project: roboshop
+    tier: db
+spec:
+  replicas: 1
+  selector:
+    matchLabels: # these labels are used to find the pods
+      app: rabbitmq
+      project: roboshop
+      tier: db
+  template:
+    metadata:
+      labels: # these labels are pod labels
+        app: rabbitmq
+        project: roboshop
+        tier: db
+    spec:
+      containers:
+      - name: rabbitmq
+        image: rabbitmq
+        imagePullPolicy: Always
+        envFrom:
+        - secretRef:
+            name: rabbitmq
