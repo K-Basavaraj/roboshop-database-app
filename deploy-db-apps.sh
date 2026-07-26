@@ -22,7 +22,7 @@ cd mongodb
 docker build -t ${ECR_REPO}:v1.0.0 .
 
 echo "Pushing MongoDB image..."
-docker push ${ECR_REPO}:v1.0.2
+docker push ${ECR_REPO}:v1.0.0
 
 echo "Deploying MongoDB..."
 cd helm
