@@ -22,21 +22,22 @@ cd mongodb
 docker build -t ${ECR_REPO}:v1.0.0 .
 
 echo "Pushing MongoDB image..."
-docker push ${ECR_REPO}:v1.0.0
+docker push ${ECR_REPO}:v1.0.2
 
 echo "Deploying MongoDB..."
+cd helm
 helm upgrade --install mongodb . -n ${NAMESPACE}
-cd ..
+cd ../
 
 echo "Deploying Redis..."
-cd redis
+cd redis/helm
 helm upgrade --install redis . -n ${NAMESPACE}
-cd ..
+cd ../..
 
 echo "Deploying RabbitMQ..."
-cd rabbitmq
+cd rabbitmq/helm
 helm upgrade --install rabbitmq . -n ${NAMESPACE}
-cd ..
+cd ../..
 
 echo "Deployment completed successfully."
 
