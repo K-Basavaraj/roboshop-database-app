@@ -27,7 +27,7 @@ docker push ${ECR_REPO}:v1.0.0
 echo "Deploying MongoDB..."
 cd helm
 helm upgrade --install mongodb . -n ${NAMESPACE}
-cd ../
+cd ../..
 
 echo "Deploying Redis..."
 cd redis/helm
